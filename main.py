@@ -61,25 +61,33 @@ def create_new_file(filename) -> None:
 
 def main() -> None:
     while True:
-        filename = input(f'{RED_TEXT}What file would you like to perform operations on? {RESET_TEXT}').strip()
-        
-        if os.path.exists(filename):
-            operation = get_file_action()
-            if operation in ['read', 'r', 'write', 'w', 'append', 'a', 'delete', 'd']:
-                handle_file_operation(filename, operation)
-            else:
-                print(f'{RED_TEXT}Invalid operation. Please choose read, write, append, or delete.{RESET_TEXT}')   
-        else:
-            yn = input(f'{RED_TEXT}The file does not exist. Would you like to create it?{RESET_TEXT} ({GREEN_TEXT}Y{RESET_TEXT}/{RED_TEXT}n{RESET_TEXT}): ').strip().lower()
-            if yn in 'y':
-                create_new_file(filename)
-            else:
-                print(f'{RED_TEXT}No file created.{RESET_TEXT}')
+        fInput = input(f'{RED_TEXT}Would you like to perform an operation on a file or a folder? {RESET_TEXT}').strip()
 
-        another_operation = input(f'{RED_TEXT}Would you like to perform another operation?{RESET_TEXT} ({GREEN_TEXT}Y{RESET_TEXT}/{RED_TEXT}n{RESET_TEXT}): ').strip().lower()
-        if another_operation != 'y':
-            print(f'{RED_TEXT}Exiting...{RESET_TEXT}')
-            break
+        if fInput.lower() in ['folder', 'dir', 'directory']:
+            import subprocess
+            executable_path = './dir'  # Ensure that this is the correct executable path!!
+            subprocess.run(executable_path)
+
+        else:
+            filename = input(f'{RED_TEXT}What file would you like to perform operations on? {RESET_TEXT}').strip()
+
+            if os.path.exists(filename):
+                operation = get_file_action()
+                if operation in ['read', 'r', 'write', 'w', 'append', 'a', 'delete', 'd']:
+                    handle_file_operation(filename, operation)
+                else:
+                    print(f'{RED_TEXT}Invalid operation. Please choose read, write, append, or delete.{RESET_TEXT}')   
+            else:
+                yn = input(f'{RED_TEXT}The file does not exist. Would you like to create it?{RESET_TEXT} ({GREEN_TEXT}Y{RESET_TEXT}/{RED_TEXT}n{RESET_TEXT}): ').strip().lower()
+                if yn in 'y':
+                    create_new_file(filename)
+                else:
+                    print(f'{RED_TEXT}No file created.{RESET_TEXT}')
+
+            another_operation = input(f'{RED_TEXT}Would you like to perform another operation?{RESET_TEXT} ({GREEN_TEXT}Y{RESET_TEXT}/{RED_TEXT}n{RESET_TEXT}): ').strip().lower()
+            if another_operation != 'y':
+                print(f'{RED_TEXT}Exiting...{RESET_TEXT}')
+                break
 
 if __name__ == '__main__':
     main()
