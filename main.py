@@ -65,7 +65,7 @@ def main() -> None:
 
         if fInput.lower() in ['folder', 'dir', 'directory']:
             import subprocess
-            executable_path = './dir'  # Ensure that this is the correct executable path!!
+            executable_path = './dir'  # Ensure that this is the correct executable path and that it works on your machine!!
             subprocess.run(executable_path)
 
         else:
