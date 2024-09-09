@@ -101,7 +101,7 @@ int main()
         }
         else
         {
-            printf("Unknown command\n");
+            printf("\"%s\": unknown command\n", command);
         }
     }
 
